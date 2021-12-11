@@ -16,7 +16,7 @@ while len(rc_flashed) != depth * width:
         grid[r][c] += 1
     cur_flashes = -1
     rc_flashed = []
-    while cur_flashes != n_flashes:  # while there is at least one flash per step
+    while cur_flashes != n_flashes:  # while there is at least one new flash per step
         cur_flashes = n_flashes
         for r, c in product(range(depth), range(width)):
             if grid[r][c] > 9 and (r, c) not in rc_flashed:
