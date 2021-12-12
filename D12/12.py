@@ -23,11 +23,11 @@ def search(pos, visited, twice):
                 if not twice:
                     cnt += search(next, visited, True)
             else:
-                cnt += search(next, visited | set([next]), twice)
+                cnt += search(next, visited + [next], twice)
         else:
             cnt += search(next, visited, twice)
     return cnt
 
 
-print(f'P1: {search("start", set(), True)}')
-print(f'P2: {search("start", set(), False)}')
+print(f'P1: {search("start", [], True)}')
+print(f'P2: {search("start", [], False)}')
