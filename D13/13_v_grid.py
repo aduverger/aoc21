@@ -10,7 +10,6 @@ for line in open("13.in"):
     if line != "" and line[0] != "f":
         R.append(int(line.split(",")[1]))
         C.append(int(line.split(",")[0]))
-        RC.append((R[-1], C[-1]))
     elif line != "" and line[0] == "f":
         if line[11] == "x":
             folds.append(("x", int(line[13:])))
@@ -26,14 +25,12 @@ def fold_it(G, folds):
     p1 = False
     for fold in folds:
         if fold[0] == "y":
-            print(f"y {fold}")
             y = fold[1]
             for r, c in product(range(y), range(Gx.shape[1])):
                 if Gx[r, c] != 1:
                     Gx[r, c] = Gx[-r - 1][c]
             Gx = Gx[:y]
         elif fold[0] == "x":
-            print(f"x {fold}")
             x = fold[1]
             for r, c in product(range(Gx.shape[0]), range(x)):
                 if Gx[r, c] != 1:
@@ -41,7 +38,7 @@ def fold_it(G, folds):
             Gx = Gx[:, :x]
         if not p1:
             p1 = True
-        print(np.count_nonzero(Gx))
+            print(np.count_nonzero(Gx))
 
     return Gx
 
