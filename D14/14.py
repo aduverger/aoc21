@@ -16,17 +16,6 @@ for i in range(len(template) - 1):
     pairs_count[template[i] + template[i + 1]] += 1
 letters_count[template[-1]] += 1
 
-# Function to print the answer for parts 1 and 2
-def print_answer(letters_count, part="P1"):
-    min_value, max_value = 0, 0
-    for value in letters_count.values():
-        if min_value == 0 or value < min_value:
-            min_value = value
-        elif value > max_value:
-            max_value = value
-    print(f"{part}: {max_value - min_value}")
-
-
 for step in range(40):
     pairs_count_temp = pairs_count.copy()
     for pair, cnt in pairs_count_temp.items():
@@ -36,5 +25,5 @@ for step in range(40):
         pairs_count[pair[0] + new_letter] += cnt
         pairs_count[new_letter + pair[1]] += cnt
     if step == 9:
-        print_answer(letters_count, "P1")
-print_answer(letters_count, "P2")
+        print(f"P1: {max(letters_count.values()) - min(letters_count.values())}")
+print(f"P2: {max(letters_count.values()) - min(letters_count.values())}")
