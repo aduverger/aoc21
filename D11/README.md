@@ -1,4 +1,4 @@
-**--- Day 11: Dumbo Octopus ---**
+### --- Day 11: Dumbo Octopus ---
 
 You enter a large cavern full of rare bioluminescent dumbo octopuses! They seem to not like the Christmas lights on your submarine, so you turn them off for now.
 
@@ -321,7 +321,7 @@ After 100 steps, there have been a total of 1656 flashes.
 Given the starting energy levels of the dumbo octopuses in your cavern, simulate 100 steps. How many total flashes are there after 100 steps?
 
 
-**--- Part Two ---**
+### --- Part Two ---
 
 It seems like the individual flashes aren't bright enough to navigate. However, you might have a better option: the flashes seem to be synchronizing!
 
