@@ -18,21 +18,23 @@ for line in open("13.in"):
 
 G = np.zeros((max(R) + 1, max(C) + 1))
 G[R, C] = 1
+print(G.shape)
 
 
 def fold_it(G, folds):
     Gx = np.copy(G)
     p1 = False
     for fold in folds:
+        print(fold[0], fold[1])
         if fold[0] == "y":
             y = fold[1]
-            for r, c in product(range(y), range(Gx.shape[1])):
+            for r, c in product(range(y + 1), range(Gx.shape[1])):
                 if Gx[r, c] != 1:
                     Gx[r, c] = Gx[-r - 1][c]
             Gx = Gx[:y]
         elif fold[0] == "x":
             x = fold[1]
-            for r, c in product(range(Gx.shape[0]), range(x)):
+            for r, c in product(range(Gx.shape[0]), range(x + 1)):
                 if Gx[r, c] != 1:
                     Gx[r, c] = Gx[r, -c - 1]
             Gx = Gx[:, :x]
