@@ -1,4 +1,4 @@
-**--- Day 7: The Treachery of Whales ---**
+### --- Day 7: The Treachery of Whales ---
 
 A giant whale has decided your submarine is its next meal, and it's much faster than you are. There's nowhere to run!
 
@@ -33,7 +33,7 @@ This costs a total of `37` fuel. This is the cheapest possible outcome; more exp
 
 Determine the horizontal position that the crabs can align to using the least fuel possible. How much fuel must they spend to align to that position?
 
-**--- Part Two ---**
+### --- Part Two ---
 
 The crabs don't seem interested in your proposed solution. Perhaps you misunderstand crab engineering?
 
