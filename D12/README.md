@@ -1,4 +1,4 @@
-**--- Day 12: Passage Pathing ---**
+### --- Day 12: Passage Pathing ---
 
 With your submarine's subterranean subsystems subsisting suboptimally, the only way you're getting out of this cave anytime soon is by finding a path yourself. Not just a path - the only way to know if you've found the best path is to find all of them.
 
@@ -100,7 +100,7 @@ start-RW
 How many paths through this cave system are there that visit small caves at most once?
 
 
-**--- Part Two ---**
+### --- Part Two ---
 
 After reviewing the available paths, you realize you might have time to visit a single small cave twice. Specifically, big caves can be visited any number of times, a single small cave can be visited at most twice, and the remaining small caves can be visited at most once. However, the caves named start and end can only be visited exactly once each: once you leave the start cave, you may not return to it, and once you reach the end cave, the path must end immediately.
 
