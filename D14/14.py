@@ -1,15 +1,12 @@
 from collections import defaultdict
 
 # Parse the input file
-is_template = True
 rules = {}
-for line in open("14.in"):
+lines = open("14.in").read().split("\n")
+template = lines[0].strip()
+for line in lines[2:]:
     line = line.strip()
-    if is_template:
-        template = line
-        is_template = False
-    elif line != "":
-        rules[line.split("->")[0].strip()[:2]] = line.split("->")[1].strip()
+    rules[line.split("->")[0].strip()[:2]] = line.split("->")[1].strip()
 
 # Initialize letters and pairs counts with the template
 letters_count = defaultdict(int)
