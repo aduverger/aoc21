@@ -32,7 +32,7 @@ fold along y=7
 fold along x=5  
 ```
 
-The first section is a list of dots on the transparent paper. 0,0 represents the top-left coordinate. The first value, x, increases to the right. The second value, y, increases downward. So, the coordinate 3,0 is to the right of 0,0, and the coordinate 0,7 is below 0,0. The coordinates in this example form the following pattern, where # is a dot on the paper and . is an empty, unmarked position:
+The first section is a list of dots on the transparent paper. `0,0` represents the top-left coordinate. The first value, `x`, increases to the right. The second value, `y`, increases downward. So, the coordinate `3,0` is to the right of `0,0`, and the coordinate `0,7` is below `0,0`. The coordinates in this example form the following pattern, where `#` is a dot on the paper and `.` is an empty, unmarked position:
 
 ```
 ...#..#..#.  
@@ -52,7 +52,7 @@ The first section is a list of dots on the transparent paper. 0,0 represents the
 #.#........  
 ```
 
-Then, there is a list of fold instructions. Each instruction indicates a line on the transparent paper and wants you to fold the paper up (for horizontal y=... lines) or left (for vertical x=... lines). In this example, the first fold instruction is fold along y=7, which designates the line formed by all of the positions where y is 7 (marked here with -):
+Then, there is a list of fold instructions. Each instruction indicates a line on the transparent paper and wants you to fold the paper up (for horizontal `y=...` lines) or left (for vertical `x=...` lines). In this example, the first fold instruction is fold along `y=7`, which designates the line formed by all of the positions where `y` is `7` (marked here with `-):
 
 ```
 ...#..#..#.  
@@ -84,13 +84,13 @@ Because this is a horizontal line, fold the bottom half up. Some of the dots mig
 ...........  
 ```
 
-Now, only 17 dots are visible.
+Now, only `17` dots are visible.
 
-Notice, for example, the two dots in the bottom left corner before the transparent paper is folded; after the fold is complete, those dots appear in the top left corner (at 0,0 and 0,1). Because the paper is transparent, the dot just below them in the result (at 0,3) remains visible, as it can be seen through the transparent paper.
+Notice, for example, the two dots in the bottom left corner before the transparent paper is folded; after the fold is complete, those dots appear in the top left corner (at `0,0` and `0,1`). Because the paper is transparent, the dot just below them in the result (at `0,3`) remains visible, as it can be seen through the transparent paper.
 
 Also notice that some dots can end up overlapping; in this case, the dots merge together and become a single dot.
 
-The second fold instruction is fold along x=5, which indicates this line:
+The second fold instruction is fold along `x=5`, which indicates this line:
 
 ```
 #.##.|#..#.  
@@ -116,7 +116,7 @@ Because this is a vertical line, fold left:
 
 The instructions made a square!
 
-The transparent paper is pretty big, so for now, focus on just completing the first fold. After the first fold in the example above, 17 dots are visible - dots that end up overlapping after the fold is completed count as a single dot.
+The transparent paper is pretty big, so for now, focus on just completing the first fold. After the first fold in the example above, `17` dots are visible - dots that end up overlapping after the fold is completed count as a single dot.
 
 How many dots are visible after completing just the first fold instruction on your transparent paper?
 
