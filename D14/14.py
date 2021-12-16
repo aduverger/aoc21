@@ -1,12 +1,8 @@
 from collections import defaultdict
 
 # Parse the input file
-rules = {}
-lines = open("14.in").read().split("\n")
-template = lines[0].strip()
-for line in lines[2:]:
-    line = line.strip()
-    rules[line.split("->")[0].strip()[:2]] = line.split("->")[1].strip()
+template, _, *rules = open("14.in").read().split("\n")
+rules = {r.split("->")[0].strip(): r.split("->")[1].strip() for r in rules}
 
 # Initialize letters and pairs counts with the template
 letters_count = defaultdict(int)
@@ -17,8 +13,7 @@ for i in range(len(template) - 1):
 letters_count[template[-1]] += 1
 
 for step in range(40):
-    pairs_count_temp = pairs_count.copy()
-    for pair, cnt in pairs_count_temp.items():
+    for pair, cnt in pairs_count.copy().items():
         new_letter = rules[pair]
         letters_count[new_letter] += cnt
         pairs_count[pair] -= cnt
