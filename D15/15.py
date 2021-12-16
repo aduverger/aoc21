@@ -1,14 +1,10 @@
 import numpy as np
 from itertools import product
-from collections import defaultdict
-import time
-import datetime
 import sys
 
 G = []
 DR = [-1, 0, 1, 0]
 DC = [0, 1, 0, -1]
-s_time = time.time()
 
 for line in open("15.txt"):
     line = line.strip()
@@ -36,7 +32,6 @@ def dijkstra(start):
         dist.append([])
         for _ in range(width):
             dist[r].append(" ")
-
     dist[start[0]][start[1]] = 0
     visited = set()
 
@@ -48,12 +43,6 @@ def dijkstra(start):
             cc = curr[1] + DC[d]
             if 0 <= rr < depth and 0 <= cc < width and dist[rr][cc] == " ":
                 dist[rr][cc] = dist[curr[0]][curr[1]] + G[rr][cc]
-        # for r in range(len(dist)):
-        #     print(dist[r])
-        # print()
-    print(
-        f"Computing time: {str(datetime.timedelta(seconds=round(time.time()-s_time, 0)))}"
-    )
     return dist[depth - 1][width - 1]
 
 
