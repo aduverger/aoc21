@@ -19,8 +19,8 @@ def launch(x_velo, y_velo, x1, x2, y1, y2, steps=1000):
         x, y, x_velo, y_velo = make_step(x, y, x_velo, y_velo)
         high_y = max(y, high_y)
         if x1 <= x <= x2 and y1 <= y <= y2:
-            return (high_y, True)
-    return (high_y, False)
+            return high_y
+    return -1
 
 
 _, area = open("17.txt").read().strip().split(":")
@@ -32,8 +32,8 @@ x1, x2, y1, y2 = int(x1), int(x2), int(y1), int(y2)
 highest_y = []
 for y_velo in range(y1, 200):
     for x_velo in range(x2 + 1):
-        high_y, landed = launch(x_velo, y_velo, x1, x2, y1, y2)
-        if landed:
+        high_y = launch(x_velo, y_velo, x1, x2, y1, y2)
+        if high_y >= 0:
             highest_y.append(high_y)
 
 print(f"P1: {max(highest_y)}")
