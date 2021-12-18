@@ -12,17 +12,17 @@ def explode(number, idx_explo):
     # the pair's left value is added to the first regular number
     # to the left of the exploding pair (if any)
     for i in range(idx_explo - 1, -1, -1):
-        if number[i] not in ["[", "]", ","]:  # if we find a regular number to the left
-            number[i] = str(int(number[i]) + int(number[idx_explo]))
+        if number[i] not in ("[", "]", ","):  # if we find a regular number to the left
+            number[i] += number[idx_explo]
             break
     # the pair's right value is added to the first regular number
     # to the right of the exploding pair (if any)
     for i in range(idx_explo + 3, len(number)):
-        if number[i] not in ["[", "]", ","]:  # if we find a regular number to the right
-            number[i] = str(int(number[i]) + int(number[idx_explo + 2]))
+        if number[i] not in ("[", "]", ","):  # if we find a regular number to the right
+            number[i] += number[idx_explo + 2]
             break
     # Then, the entire exploding pair is replaced with the regular number 0.
-    number[idx_explo - 1 : idx_explo + 4] = "0"
+    number[idx_explo - 1 : idx_explo + 4] = [0]
     return number
 
 
@@ -41,9 +41,9 @@ def should_explode(number):
 
 def split(number, idx_split):
     new_number = number[:idx_split]
-    lft_value = floor(int(number[idx_split]) / 2)
-    rght_value = ceil(int(number[idx_split]) / 2)
-    new_number += ["[", str(lft_value), ",", str(rght_value), "]"]
+    lft_value = floor(number[idx_split] / 2)
+    rght_value = ceil(number[idx_split] / 2)
+    new_number += ["[", lft_value, ",", rght_value, "]"]
     new_number += number[idx_split + 1 :]
     return new_number
 
@@ -51,7 +51,7 @@ def split(number, idx_split):
 def should_split(number):
     """Return the index of the value to split (if any), else return -1"""
     for idx in range(len(number)):
-        if number[idx] not in ["[", "]", ","] and int(number[idx]) > 9:
+        if number[idx] not in ("[", "]", ",") and number[idx] > 9:
             return idx
     return -1
 
@@ -74,14 +74,14 @@ def get_magnitude(number):
         return number  # The magnitude of a regular number is just that number
     elif isinstance(number[0], str):
         # If number (string) has not already been transformed into a list of int
-        number = ast.literal_eval("".join(n for n in number))
+        number = ast.literal_eval("".join(str(n) for n in number))
     return 3 * get_magnitude(number[0]) + 2 * get_magnitude(number[1])
 
 
 # PARSE INPUT
 N = []
 for line in open("18.txt"):
-    N.append([c for c in line.strip()])
+    N.append([int(x) if x not in ("[", "]", ",") else x for x in line.strip()])
 
 # PART 1
 for i in range(len(N) - 1):
