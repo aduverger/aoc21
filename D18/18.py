@@ -26,15 +26,6 @@ def explode(number, idx_explo):
     return number
 
 
-def split(number, idx_split):
-    new_number = number[:idx_split]
-    lft_value = floor(int(number[idx_split]) / 2)
-    rght_value = ceil(int(number[idx_split]) / 2)
-    new_number += ["[", str(lft_value), ",", str(rght_value), "]"]
-    new_number += number[idx_split + 1 :]
-    return new_number
-
-
 def should_explode(number):
     """Return the index of the left value to explode (if any), else return -1"""
     brackets_cnt = 0
@@ -48,21 +39,21 @@ def should_explode(number):
     return -1
 
 
+def split(number, idx_split):
+    new_number = number[:idx_split]
+    lft_value = floor(int(number[idx_split]) / 2)
+    rght_value = ceil(int(number[idx_split]) / 2)
+    new_number += ["[", str(lft_value), ",", str(rght_value), "]"]
+    new_number += number[idx_split + 1 :]
+    return new_number
+
+
 def should_split(number):
     """Return the index of the value to split (if any), else return -1"""
     for idx in range(len(number)):
         if number[idx] not in ["[", "]", ","] and int(number[idx]) > 9:
             return idx
     return -1
-
-
-def get_magnitude(number):
-    if isinstance(number, int):
-        return number  # The magnitude of a regular number is just that number
-    elif isinstance(number[0], str):
-        # If number (string) has not already been transformed into a list of int
-        number = ast.literal_eval("".join(n for n in number))
-    return 3 * get_magnitude(number[0]) + 2 * get_magnitude(number[1])
 
 
 def reduce(number):
@@ -76,6 +67,15 @@ def reduce(number):
             if idx_split != -1:
                 number = split(number, idx_split)
     return number
+
+
+def get_magnitude(number):
+    if isinstance(number, int):
+        return number  # The magnitude of a regular number is just that number
+    elif isinstance(number[0], str):
+        # If number (string) has not already been transformed into a list of int
+        number = ast.literal_eval("".join(n for n in number))
+    return 3 * get_magnitude(number[0]) + 2 * get_magnitude(number[1])
 
 
 # PARSE INPUT
