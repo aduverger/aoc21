@@ -17,8 +17,8 @@ def manhattan(c1, c2):
 def get_scnr_coord(coords1, coords2):
     """get scanner2 coordinates (`coords2`) relative to scanner1 (`coords1`)"""
     DIFF = defaultdict(int)
-    for i, j in product(range(len(coords1)), range(len(coords2))):
-        DIFF[diff_(coords1[i], coords2[j])] += 1
+    for c1, c2 in product(coords1, coords2):
+        DIFF[diff_(c1, c2)] += 1
     if max(DIFF.values()) > 11:
         return max(DIFF, key=DIFF.get)
     return -1
@@ -37,23 +37,23 @@ def rotate(coords, r, t):
 
 
 def find_those_beacons():
-    D0 = D[0]  # DX contains beacons with coordinates relatives to scanner 0
+    D0 = D[0]  # List of beacons coordinates, relative to scanner 0
     SCNR = [(0, 0, 0)]  # List of scanners coordinates, relative to scanner 0
-    scnr_nt_fnd = list(range(1, len(D)))  # List of scanners to found (all except 0)
-    while scnr_nt_fnd:  # while there is still scanners to find
-        for scnr in scnr_nt_fnd:
+    scnr_to_fnd = list(range(1, len(D)))  # List of scanners to find (all except 0)
+    while scnr_to_fnd:  # while there is still scanners to find
+        for scnr in scnr_to_fnd:  # try to find overlapping betwen scanner 0 and scnr
             for r, t in product(
                 permutations((0, 1, 2), 3), product((-1, 1), (-1, 1), (-1, 1))
             ):
                 r_coords = rotate(D[scnr], r, t)
                 scnr_coord = get_scnr_coord(D0, r_coords)
-                if scnr_coord != -1:  # This is a match ! Between scnr_0 and scnr
-                    SCNR.append(scnr_coord)
+                if scnr_coord != -1:  # This is a match ! Between scanner 0 and scnr
+                    scnr_to_fnd.remove(scnr)  # scnr is found so remove it
+                    SCNR.append(scnr_coord)  # save its coordinates for part2
                     for coord in r_coords:
                         if sum_(coord, scnr_coord) not in D0:
-                            # add coord relative to 0
+                            # add these new beacons coordinates, relative to 0
                             D0.append(sum_(coord, scnr_coord))
-                    scnr_nt_fnd.remove(scnr)  # scnr is found so remove it
                     break
     return D0, SCNR
 
@@ -65,17 +65,15 @@ for line in open("19.txt"):
     line = line.strip()
     if line == "":
         continue
-    if line.startswith("---"):
+    elif line.startswith("---"):
         scnr += 1
     else:
         x, y, z = line.split(",")
         D[scnr].append((int(x), int(y), int(z)))
 
 D0, SCNR = find_those_beacons()
-
 ## PART 1
 print(f"P1: {len(D0)}")
-
 ## PART 2
 d = 0
 for i, j in product(range(len(D)), range(len(D))):
