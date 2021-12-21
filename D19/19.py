@@ -63,11 +63,9 @@ D = defaultdict(list)
 scnr = -1
 for line in open("19.txt"):
     line = line.strip()
-    if line == "":
-        continue
-    elif line.startswith("---"):
+    if line.startswith("---"):
         scnr += 1
-    else:
+    elif line != "":
         x, y, z = line.split(",")
         D[scnr].append((int(x), int(y), int(z)))
 
