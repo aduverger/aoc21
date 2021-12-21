@@ -3,10 +3,8 @@ from itertools import product
 
 
 def pxl_conv(G, r, c):
-    DR = [-1, 0, 1]
-    DC = [-1, 0, 1]
     output = ""
-    for dr, dc in product(DR, DC):
+    for dr, dc in product([-1, 0, 1], [-1, 0, 1]):
         rr = r + dr
         cc = c + dc
         if not (0 <= rr < G.shape[0] and 0 <= cc < G.shape[1]):
