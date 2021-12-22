@@ -1,5 +1,4 @@
 from collections import defaultdict
-import numpy as np
 
 
 def reboot(p1):
@@ -11,7 +10,7 @@ def reboot(p1):
         x1, x2 = map(int, x[2:].split(".."))
         y1, y2 = map(int, y[2:].split(".."))
         z1, z2 = map(int, z[2:].split(".."))
-        if p1 and not np.all([c in range(-50, 51) for c in (x1, x2, y1, y2, z1, z2)]):
+        if p1 and any([c not in range(-50, 51) for c in (x1, x2, y1, y2, z1, z2)]):
             continue
         # Try to find intersections between previous cuboids (_p) and the current one:
         for (x1_p, x2_p, y1_p, y2_p, z1_p, z2_p), ordr_p in C.copy().items():
