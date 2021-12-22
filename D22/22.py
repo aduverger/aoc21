@@ -20,12 +20,12 @@ def reboot(p1):
             intr_y2 = min(y2_p, y2)
             intr_z1 = max(z1_p, z1)
             intr_z2 = min(z2_p, z2)
-            if (
+            if (  # if there's an intersection between that previous cuboid and the current one
                 intr_x1 < intr_x2 and intr_y1 < intr_y2 and intr_z1 < intr_z2
-            ):  # if there is an intersection between that previous cuboid and the current one
-                C[(intr_x1, intr_x2, intr_y1, intr_y2, intr_z1, intr_z2)] -= ordr_p
+            ):
                 # we 'cancel' its order
-        # if `on` order, we turn on the current cuboid:
+                C[(intr_x1, intr_x2, intr_y1, intr_y2, intr_z1, intr_z2)] -= ordr_p
+        # if order is `on`, we turn on the current cuboid:
         C[(x1, x2, y1, y2, z1, z2)] += max(0, ordr)
 
     cnt = 0
