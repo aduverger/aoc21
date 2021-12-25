@@ -28,7 +28,7 @@ def move_cell(G, r, c):
 def move_all(G):
     step = 0
     changed = True
-    while changed == True:
+    while changed:
         changed = False
         for herd in (">", "v"):
             G2 = [[c for c in r] for r in G]
